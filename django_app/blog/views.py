@@ -30,9 +30,15 @@ def post_add(request):
     elif request.method == 'POST':
         data = request.POST
         post = Post.objects.create(
-            author = User.objects.first(),
-            title = data['titlebox'],
-            text = data['textbox'],
+            author=User.objects.first(),
+            title=data['titlebox'],
+            text=data['textbox'],
         )
         print('request: ', request.POST)
         return redirect('post_detail', pk=post.pk)
+
+def post_modify(request):
+    context = {
+
+    }
+    return render(request, 'blog/post_modify.html', context)
