@@ -1,17 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Django Girls</title>
-</head>
-<body>
-    <p>title: {{ post.title }}</p>
-    <p>author: {{ post.author }}</p>
-    <p>text: {{ post.text }}</p>
-    <p>created_date: {{ post.created_date }}</p>
-    <a href="{% url 'post_list' %}">back</a>
-</body>
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div>
+        <p>title: {{ post.title }}</p>
+        <p>author: {{ post.author }}</p>
+        <p>text: {{ post.text }}</p>
+        <p>created_date: {{ post.created_date }}</p>
+        <a href="{% url 'post_list' %}">back</a>
+    </div>
+{% endblock %}
