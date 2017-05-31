@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from blog.models import Post
@@ -14,9 +14,9 @@ def post_list(request):
 
 
 def post_detail(request, pk):
-
+    post = get_object_or_404(Post, pk=pk)
     context = {
-        'post': Post.objects.get(pk=pk)
+        'post': post,
     }
     return render(request, 'blog/post_detail.html', context)
 
