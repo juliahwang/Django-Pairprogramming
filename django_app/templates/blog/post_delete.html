@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div>
+        <form action="" method="GET">
+            {% csrf_token %}
+            <a href="{% url 'post_list' %}">go to list</a>
+
+        </form>
+    </div>
+{% endblock %}

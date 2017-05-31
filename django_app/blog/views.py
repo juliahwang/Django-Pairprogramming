@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -54,11 +55,24 @@ def post_modify(request, pk):
         return redirect('post_detail', pk=post.pk)
 
 
+def post_delete(request):
+    if request.method == 'POST':
+        print('post')
+        # post = Post.objects.get(id=pk)
+        post.delete()
+        return render(request, 'blog/post_delete.html')
 
-def post_delete(request, pk):
-    if request.method == 'GET':
-        context = {
+    elif request.method == 'GET':
+        # post = get_object_or_404(Post, id = pk)
+        # context = {
+        #     'post': post,
+        # }
+        print('get')
+        return render(request, 'blog/post_detail.html')
 
-        }
-        return render(request, 'blog/post_delete.html', context)
+
+
+
+
+
 

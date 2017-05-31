@@ -1,10 +1,20 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <div>
-        <p>title: {{ post.title }}</p>
-        <p>author: {{ post.author }}</p>
-        <p>text: {{ post.text }}</p>
-        <p>created_date: {{ post.created_date }}</p>
-        <a href="{% url 'post_list' %}">back</a>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>title: {{ post.title }}</p>
+            <p>author: {{ post.author }}</p>
+            <p>text: {{ post.text }}</p>
+            <p>created_date: {{ post.created_date }}</p>
+            <a href="{% url 'post_list' %}">back</a>
+            <a href="{% url 'post_modify' pk=post.pk %}">modify</a>
+
+            <a href="{% url 'post_delete' %}">delete a</a>
+            {% comment %}
+            <button type="submit" onclick=”location.href=’{% url 'post_delete' pk=post.pk %}'>delete button</button>
+            {% endcomment %}
+
+        </form>
     </div>
 {% endblock %}
