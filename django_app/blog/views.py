@@ -37,8 +37,28 @@ def post_add(request):
         print('request: ', request.POST)
         return redirect('post_detail', pk=post.pk)
 
-def post_modify(request):
-    context = {
 
-    }
-    return render(request, 'blog/post_modify.html', context)
+def post_modify(request, pk):
+    post = Post.objects.get(pk = pk)
+    if request.method == 'GET':
+        context = {
+            'title': post.title,
+            'text': post.text,
+        }
+        return render(request, 'blog/post_modify.html', context)
+    elif request.method == 'POST':
+        data = request.POST
+        post.title = data['titlebox']
+        post.text = data['textbox']
+        post.save()
+        return redirect('post_detail', pk=post.pk)
+
+
+
+def post_delete(request, pk):
+    if request.method == 'GET':
+        context = {
+
+        }
+        return render(request, 'blog/post_delete.html', context)
+

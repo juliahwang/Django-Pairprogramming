@@ -2,8 +2,8 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <input type="text" name ='titlebox'>
-        <textarea name="textbox" id="" cols="30" rows="10"></textarea>
+        <input type="text" name ='titlebox' value="{{ title }}">
+        <textarea name="textbox" id="" cols="30" rows="10">{{ text }}</textarea>
         <button type="submit">submit</button>
     </form>
 {% endblock %}
