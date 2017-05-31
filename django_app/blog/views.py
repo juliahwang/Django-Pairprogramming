@@ -55,24 +55,36 @@ def post_modify(request, pk):
         return redirect('post_detail', pk=post.pk)
 
 
-def post_delete(request):
-    if request.method == 'POST':
-        print('post')
-        # post = Post.objects.get(id=pk)
+# def post_delete(request, pk):
+#     if request.method == 'GET':
+#         post = get_object_or_404(Post, id=pk)
+#         context = {
+#             'post': post,
+#         }
+#         print('get')
+#         return render(request, 'blog/post_detail.html', context)
+#
+#     elif request.method == 'POST':
+#         post = Post.objects.get(id=pk)
+#         context = {
+#             'pk': post.pk,
+#         }
+#         render(request, 'blog/post_delete.html', context)
+#         post.delete()
+#         return render(request, 'blog/post_list.html')
+
+
+def post_delete(request, pk):
+    if request.GET.get('deletebutton'):
+        post=get_object_or_404(Post, id=pk)
+        context = {
+            'post': post,
+        }
+        return render(request, 'blog/post_detail.html', context)
+    elif request.POST.get('deletebutton'):
+        post = Post.objects.get(id=pk)
+        context = {
+            pk: post.pk,
+        }
         post.delete()
-        return render(request, 'blog/post_delete.html')
-
-    elif request.method == 'GET':
-        # post = get_object_or_404(Post, id = pk)
-        # context = {
-        #     'post': post,
-        # }
-        print('get')
-        return render(request, 'blog/post_detail.html')
-
-
-
-
-
-
-
+        return redirect('blog/post_delete.html', context)

@@ -1,10 +1,10 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <div>
-        <form action="" method="GET">
+        <p>post number {{ post.pk }} is deleted</p>
+        <form action="{% url path.to.post_list %}" method="POST">
             {% csrf_token %}
-            <a href="{% url 'post_list' %}">go to list</a>
-
+            <button type="submit" name="backlist">go to list</button>
         </form>
     </div>
 {% endblock %}

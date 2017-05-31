@@ -9,12 +9,7 @@
             <p>created_date: {{ post.created_date }}</p>
             <a href="{% url 'post_list' %}">back</a>
             <a href="{% url 'post_modify' pk=post.pk %}">modify</a>
-
-            <a href="{% url 'post_delete' %}">delete a</a>
-            {% comment %}
-            <button type="submit" onclick=”location.href=’{% url 'post_delete' pk=post.pk %}'>delete button</button>
-            {% endcomment %}
-
+            <button type="submit" class="btn" onclick="location.href='{% url 'post_delete' pk=post.pk %}'" name="deletebutton" value="Click">delete button</button>
         </form>
     </div>
 {% endblock %}
