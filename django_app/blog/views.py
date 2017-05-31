@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from blog.models import Post
 
 User = get_user_model()
+
 def post_list(request):
     posts = Post.objects.order_by('-created_date')
     context = {
@@ -75,16 +76,21 @@ def post_modify(request, pk):
 
 
 def post_delete(request, pk):
-    if request.GET.get('deletebutton'):
-        post=get_object_or_404(Post, id=pk)
+    print('delete called')
+    # if request.GET.get('deletebutton'):
+    if request.method == 'GET':
+        # print(request.GET.get('deletebutton'))
+        # post = Post.objects.get(pk=pk)
+        post = get_object_or_404(Post, id=pk)
         context = {
             'post': post,
         }
-        return render(request, 'blog/post_detail.html', context)
-    elif request.POST.get('deletebutton'):
+        # return HttpResponse('delete')
+        return render(request, 'blog/post_delete.html', context)
+    # elif request.POST.get('deletebutton'):
+    elif request.method == 'POST':
+        # print(request.POST.get('deletebutton'))
         post = Post.objects.get(id=pk)
-        context = {
-            pk: post.pk,
-        }
         post.delete()
-        return redirect('blog/post_delete.html', context)
+        # return redirect('blog/post_list.html')
+        return redirect('post_list')

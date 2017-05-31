@@ -1,10 +1,12 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <div>
-        <p>post number {{ post.pk }} is deleted</p>
-        <form action="{% url path.to.post_list %}" method="POST">
+        <p>post number {{ post.pk }} is deleting...</p>
+        <form action="" method="POST">
             {% csrf_token %}
-            <button type="submit" name="backlist">go to list</button>
+            <button type="submit" name="delete_ok">OK</button>
+            <button type="button" name="delete_no">Cancel</button>
+
         </form>
     </div>
 {% endblock %}
