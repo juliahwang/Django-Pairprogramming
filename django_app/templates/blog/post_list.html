@@ -10,7 +10,7 @@
 <body>
 
 {% for post in posts %}
-    <p>title: {{ post.title }}</p>
+    <p><a href="{% url 'post_detail' pk=post.pk %}">title: {{ post.title }}</a></p>
     <p>created_date: {{ post.created_date }}</p>
 
 {% endfor%}
